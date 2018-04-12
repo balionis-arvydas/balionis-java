@@ -93,6 +93,8 @@ public class MyApp6 {
             }
         }
 
+        LOGGER.info("getMaxV0: max=" + max);
+
         return max;
     }
 
