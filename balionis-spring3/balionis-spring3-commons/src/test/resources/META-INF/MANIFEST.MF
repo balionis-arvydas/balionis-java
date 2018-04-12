@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Build-Time: 2001-01-01 00:00
+Specification-Title: balionis-spring3-commons
+Specification-Version: 1.0-SNAPSHOT
+Implementation-Version: SNAPSHOT
+

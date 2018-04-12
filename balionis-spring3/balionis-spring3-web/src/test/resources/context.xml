@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context>
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+
+    <Resource name="jdbc/mydb1" auth="Container" type="javax.sql.DataSource"
+        maxActive="100" maxIdle="30" maxWait="10000"
+        username="myapp1" password="myapp1_pwd" driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://localhost:3306/mydb1"/>
+</Context>

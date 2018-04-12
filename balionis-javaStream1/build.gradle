@@ -1,0 +1,101 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.balionis'
+version = APP_VERSION
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'commons-logging', name: 'commons-logging', version: '1.1.1'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': rootProject.name,
+                   'Implementation-Version': version
+    }
+}
+
+// gradle build
+test {
+    systemProperties 'property': 'value'
+}
+
+// gradle install
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: LOCAL_MAVEN_REPOSITORY)
+        }
+    }
+}
+
+// gradle run1 -Dmyvariable=myvalue -Dexec.args="myarg1 myarg2"
+task run1 (type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+
+    main = 'com.balionis.javaStream1.MyApp1'
+
+    /* Or just each by name: */
+    if (System.getProperty("myvariable") != null) {
+        systemProperty "myvariable", System.getProperty("myvariable")
+    }
+
+    /* Need to split the space-delimited value in the exec.args */
+    if (System.getProperty("exec.args") != null) {
+        args System.getProperty("exec.args").split()
+    }
+}
+
+// gradle run2
+task run2 (type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+
+    main = 'com.balionis.javaStream1.MyApp2'
+
+}
+
+// gradle run3 -Dexec.args="0123456 2"
+task run3 (type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+
+    main = 'com.balionis.javaStream1.MyApp3'
+
+    /* Need to split the space-delimited value in the exec.args */
+    if (System.getProperty("exec.args") != null) {
+        args System.getProperty("exec.args").split()
+    }
+}
+
+// gradle run4
+task run4 (type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+
+    main = 'com.balionis.javaStream1.MyApp4'
+
+}
+
+// gradle run5 -Dexec.args="0123456"
+task run5 (type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+
+    main = 'com.balionis.javaStream1.MyApp5'
+
+    /* Need to split the space-delimited value in the exec.args */
+    if (System.getProperty("exec.args") != null) {
+        args System.getProperty("exec.args").split()
+    }
+}
+
+// gradle run6
+task run6 (type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+
+    main = 'com.balionis.javaStream1.MyApp6'
+
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+    <definition name="base"
+        template="/WEB-INF/jsp/layout.jsp">
+        <put-attribute name="title" value="my app" />
+        <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp" />
+    </definition>
+
+    <definition name="workingView" extends="base">
+        <put-attribute name="title" value="my app | error" />
+        <put-attribute name="body" value="/WEB-INF/jsp/workingBody.jsp" />
+    </definition>
+
+    <definition name="missingView" extends="base">
+        <put-attribute name="title" value="my app | moved" />
+        <put-attribute name="body" value="/WEB-INF/jsp/missingBody.jsp" />
+    </definition>
+	
+    <definition name="welcomeView" extends="base">
+        <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/welcomeBody.jsp" />
+    </definition>
+
+    <definition name="modelView" extends="base">
+        <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/modelBody.jsp" />
+    </definition>
+
+    <definition name="loginView" extends="base">
+        <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/loginBody.jsp" />
+    </definition>
+    
+</tiles-definitions>
