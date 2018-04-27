@@ -1,6 +1,7 @@
 # Why?
 
 This package is meant to provide me with the prototype of build, test, package and dist java project with gradle.
+This package also uses Mockito to run unit tests.
 
 # How?
 
