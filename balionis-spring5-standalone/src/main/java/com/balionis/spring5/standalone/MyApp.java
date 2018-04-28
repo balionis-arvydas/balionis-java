@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-@SpringBootApplication
+@SpringBootApplication // same as @Configuration @EnableAutoConfiguration @ComponentScan
 public class MyApp implements ApplicationRunner {
 
     private static final Log logger = LogFactory.getLog(MyApp.class);
