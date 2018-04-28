@@ -32,7 +32,8 @@ public class MyApp {
         MyService service = new MyService(name);
         MyApp app = new MyApp(name, service);
 
-        System.out.println(app.echo(msg));
+		String res = app.echo(msg);
+        System.out.println("res=" + res);
     }
 
     public static void usage() {

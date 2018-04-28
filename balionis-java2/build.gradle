@@ -35,7 +35,7 @@ uploadArchives {
     }
 }
 
-// gradle run -Dmyvariable=myvalue -Dexec.args="myarg1 myarg2"
+// gradle run -Dmyvariable=myvalue -Dexec.args="myarg1 myarg2 false"
 task run (type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
 
