@@ -18,7 +18,7 @@ This package also uses Mockito to run unit tests.
 gradle clean build
 ```
 
-_Note: the artifact should be produced at balionis-javaGradle1\build\libs\balionis-javaGradle1-1.0-SNAPSHOT.jar_
+_Note: the artifact should be produced at balionis-java1-gradle\build\libs\balionis-java1-gradle-1.0-SNAPSHOT.jar_
 
 ## Publish
 
@@ -26,7 +26,7 @@ _Note: the artifact should be produced at balionis-javaGradle1\build\libs\balion
 gradle install
 ```
 
-_Note: If LOCAL_MAVEN_REPOSITORY at gradle.properties is left unchanged then the artifact should be produced at C:\share\repository\com\balionis\balionis-javaGradle1\1.0-SNAPSHOT_
+_Note: If LOCAL_MAVEN_REPOSITORY at gradle.properties is left unchanged then the artifact should be produced at C:\share\repository\com\balionis\balionis-java1-gradle\1.0-SNAPSHOT_
 
 ## Run
 
