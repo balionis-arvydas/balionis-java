@@ -59,11 +59,31 @@ _Note: If all goes well then the command line output should look like this_
 > Building 75% > :run
 ```
 
-## Test
+## Test (user)
 
 * Open http://localhost:8090/echo?message=aMessage
+* Enter username: user, password: password
 
 _Note: If all goes well then the browser should look like this_
 ```
 {"id":2,"content":"aService@prod:aMessage"}
+```
+
+## Test (admin)
+
+* Open http://localhost:8090/echo?message=SHUTDOWN
+* Enter username: user, password: password
+
+_Note: If all goes well then the browser should look like this_
+```
+403 (Forbidden)
+```
+
+* Close browser
+* Open again http://localhost:8090/echo?message=SHUTDOWN
+* Enter username: admin, password: password
+
+_Note: If all goes well then the browser should look like this_
+```
+{"id":3,"content":"aService@prod:SHUTDOWN"}
 ```

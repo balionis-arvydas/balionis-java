@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import java.nio.charset.Charset;
 
@@ -46,6 +47,7 @@ public class MyControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "user", roles = "USER")
     public void testMe() throws Exception {
         mockMvc.perform(get("/echo?message=myMsg"))
                 .andExpect(status().isOk())
