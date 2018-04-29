@@ -40,7 +40,7 @@ uploadArchives {
     }
 }
 
-// gradle run -Dprofile=prod -Dexec.args="--service.name=aService --msg=aMsg"
+// gradle run -Dprofile=prod -Dexec.args="--server.port=8090 --service.name=aService --msg=aMsg"
 task run (type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
 
