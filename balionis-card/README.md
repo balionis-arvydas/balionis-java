@@ -33,7 +33,7 @@ _Note: the artifact should be produced at balionis-card\build\libs\balionis-card
 ## Run
 
 ```diff
-+ THIS IS NOT FOR PRODUCTION ENVIRONMENT. TODO: write launcher script.
+- THIS IS NOT FOR PRODUCTION ENVIRONMENT. TODO: write launcher script.
 ```
 
 ```
