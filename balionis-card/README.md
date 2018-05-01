@@ -32,7 +32,9 @@ _Note: the artifact should be produced at balionis-card\build\libs\balionis-card
 
 ## Run
 
-_Note: THIS IS NOT FOR PRODUCTION ENVIRONMENT. TODO: write a "bat" file launch"er"
+```diff
+THIS IS NOT FOR PRODUCTION ENVIRONMENT. TODO: write launcher script.
+```
 
 ```
 gradle run -Dprofile=prod -Dexec.args="--server.port=8090"
@@ -77,7 +79,7 @@ _Note: If all goes well then the browser should look like this_
 
 _Note: If all goes well then the browser should look like this_
 ```
-{"cardName":"card1","balance":900.0,"status":"FAILURE","reason":"not enough funds"}
+{"cardName":"card1","balance":1000.0,"status":"FAILURE","reason":"not enough funds"}
 ```
 ![alt text](docs/images/2_2.png "Test 2 (card1, no funds) Step 2")
 
@@ -88,7 +90,7 @@ _Note: If all goes well then the browser should look like this_
 
 _Note: If all goes well then the browser should look like this_
 ```
-{"cardName":"card1","balance":1000.0,"status":"SUCCESS","reason":null}
+{"cardName":"card1","balance":1100.0,"status":"SUCCESS","reason":null}
 ```
 ![alt text](docs/images/3_2.png "Test 3 (card1, topup) Step 2")
 
@@ -105,7 +107,7 @@ HTTP ERROR 401 (Unauthorized)
 ```
 ![alt text](docs/images/4_2.png "Test 4 (card1, badpin) Step 2")
 
-## Test (boguscard)
+## Test 5 (badcard)
 
 * Open http://localhost:8090/withdraw?amount=100
 * Enter username: boguscard, password: 2345 ('Sign in' screen should show up every time you click "Sign in" button)
