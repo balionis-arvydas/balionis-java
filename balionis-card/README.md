@@ -6,7 +6,7 @@ Implement a very basic virtual cash card in Java.
  
 ### Requirements:
 1. Can withdraw money if a valid pin is supplied. The balance on the card needs to adjust accordingly.
-2. Can be topped up any time by an arbitrary amount.
+2. Can be topped up any time by an arbitrary amount by anyone (no valid pin required).
 3. The cash card, being virtual, can be used in many places at the same time.
  
 ### Principles:
@@ -85,14 +85,13 @@ _Note: If all goes well then the browser should look like this_
 
 ## Test 3 (card1, topup)
 
-* Open http://localhost:8090/topup?amount=100
-* Enter username: card1, password: 1234
+* Open http://localhost:8090/topup?cardName=card1&amount=100
 
 _Note: If all goes well then the browser should look like this_
 ```
 {"cardName":"card1","balance":1100.0,"status":"SUCCESS","reason":null}
 ```
-![alt text](docs/images/3_2.png "Test 3 (card1, topup) Step 2")
+![alt text](docs/images/3_2.png "Test 3 (card1, topup) Step 1")
 
 ## Test 4 (card1, bogus pin)
 
@@ -119,3 +118,13 @@ _Note: If all goes well then the browser should look like this_
 HTTP ERROR 401 (Unauthorized)
 ```
 ![alt text](docs/images/5_2.png "Test 5 (badcard) Step 2")
+
+## Test 6 (badcard, topup)
+
+* Open http://localhost:8090/topup?cardName=badcard&amount=100
+
+_Note: If all goes well then the browser should look like this_
+```
+{"cardName":"badcard","balance":-1.0,"status":"FAILURE","reason":"unknown cardName"}
+```
+![alt text](docs/images/6_2.png "Test 6 (badcard, topup) Step 1")

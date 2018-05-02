@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.savedrequest.NullRequestCache;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 
 import org.springframework.security.config.annotation.authentication.configurers.provisioning.UserDetailsManagerConfigurer.UserDetailsBuilder;
 
@@ -27,6 +28,7 @@ class CardSecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests() //
+            .antMatchers("/topup/**").permitAll()
             .anyRequest().authenticated() //
             .and().requestCache().requestCache(new NullRequestCache()) //
             .and().httpBasic() //

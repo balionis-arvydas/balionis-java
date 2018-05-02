@@ -49,12 +49,10 @@ public class CardController {
 
     }
 
-    @Secured("ROLE_USER")
     @RequestMapping(path = "/topup", method = RequestMethod.GET)
     @ResponseBody
-    public CardResponse topup(@RequestParam(value="amount", defaultValue="-1") double amount) throws CardException {
-
-        String cardName = securityFacade.getCurrentCardName();
+    public CardResponse topup(@RequestParam(value="cardName", defaultValue="") String cardName,
+                              @RequestParam(value="amount", defaultValue="-1") double amount) throws CardException {
 
         logger.debug("topup: cardName={}, amount={}", cardName, amount);
 
@@ -76,7 +74,7 @@ public class CardController {
     @ResponseBody
     public CardResponse handleException(CardException exc)  {
 
-        logger.info("handleException: cardName={}, reason={}", exc.getCardName(), exc.getMessage(), exc);
+        logger.info("handleException: cardName={}, reason={}", exc.getCardName(), exc.getMessage());
 
         CardResponse response = new CardResponse(exc.getCardName(), exc.getBalance(), CardResponse.Status.FAILURE, exc.getMessage());
         return response;

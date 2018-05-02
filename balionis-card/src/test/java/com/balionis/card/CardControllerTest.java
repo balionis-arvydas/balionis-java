@@ -38,6 +38,7 @@ public class CardControllerTest {
             Charset.forName("utf8"));
 
     private MockMvc mockMvc;
+    private MockMvc mockMvcNoSecurity;
 
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -130,14 +131,13 @@ public class CardControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "card1", password = "1234", roles = "USER")
     public void testTopUp() throws Exception {
 
         CardRequest req = new CardRequest("card1", 100.0);
 
         Mockito.when(repositoryMock.update(req)).thenReturn(1100.0);
 
-        mockMvc.perform(get("/topup?amount=100").with(httpBasic("card1","1234")))
+        mockMvc.perform(get("/topup?cardName=card1&amount=100"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(contentType))
                 .andExpect(jsonPath("$.cardName", is("card1")))
@@ -146,18 +146,30 @@ public class CardControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "card1", password = "1234", roles = "USER")
     public void testTopUpNegative() throws Exception {
 
-        // NOOP:
-        // CardRequest req = new CardRequest("card1", -100.0);
-        // Mockito.when(repositoryMock.update(Mockito.any())).thenReturn(900.0);
-
-        mockMvc.perform(get("/topup?amount=-100").with(httpBasic("card1","1234")))
+        mockMvc.perform(get("/topup?cardName=card1&amount=-100"))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().contentType(contentType))
                 .andExpect(jsonPath("$.cardName", is("card1")))
                 .andExpect(jsonPath("$.status", is("FAILURE")))
                 .andExpect(jsonPath("$.reason", is("top-up amount must be positive")));
     }
+
+    @Test
+    public void testTopUpBadCard() throws Exception {
+
+        CardRequest req = new CardRequest("badcard", 100.0);
+
+        Mockito.when(repositoryMock.update(req)).thenThrow(
+                new CardException("badcard", -1, "unknown cardName")
+        );
+
+        mockMvc.perform(get("/topup?cardName=badcard&amount=100"))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(contentType))
+                .andExpect(jsonPath("$.cardName", is("badcard")))
+                .andExpect(jsonPath("$.status", is("FAILURE")));
+    }
+
 }
