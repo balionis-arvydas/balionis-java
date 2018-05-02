@@ -38,7 +38,6 @@ public class CardControllerTest {
             Charset.forName("utf8"));
 
     private MockMvc mockMvc;
-    private MockMvc mockMvcNoSecurity;
 
     @Autowired
     private WebApplicationContext webApplicationContext;
