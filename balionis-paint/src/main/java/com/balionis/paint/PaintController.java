@@ -32,7 +32,7 @@ public class PaintController implements ActionVisitor {
     public void handleAction(ActionForCreate action) {
         logger.debug("handleAction: action={}", action);
 
-        canvas = canvasBuilder.withDimentions(action.getWidth(), action.getHeight()).build();
+        canvas = canvasBuilder.withDimensions(action.getWidth(), action.getHeight()).build();
 
         logger.debug("handleAction: canvas={}", canvas);
 
@@ -50,6 +50,53 @@ public class PaintController implements ActionVisitor {
         for (String line : lines) {
             writer.writeLine(line);
         }
+    }
+
+    public void handleAction(ActionForLine action) {
+        logger.debug("handleAction: action={}", action);
+
+        if (canvas == null) {
+            throw new IllegalStateException("canvas is not defined");
+        }
+
+        if (action.isHorizontal()) {
+            for (int x = action.getX1(); x <= action.getX2(); x++) {
+                canvas.replace(x, action.getY1(), 'x');
+            }
+        } else {
+            for (int y = action.getY1(); y <= action.getY2(); y++) {
+                canvas.replace(action.getX1(), y, 'x');
+            }
+        }
+
+        logger.debug("handleAction: canvas={}", canvas);
+
+        handleAction(new ActionForPaint());
+    }
+
+    public void handleAction(ActionForRect action) {
+        logger.debug("handleAction: action={}", action);
+
+        if (canvas == null) {
+            throw new IllegalStateException("canvas is not defined");
+        }
+
+        for (int x = action.getX1(); x <= action.getX2(); x++) {
+            canvas.replace(x, action.getY1(), 'x');
+        }
+
+        for (int y = action.getY1(); y <= action.getY2(); y++) {
+            canvas.replace(action.getX1(), y, 'x');
+            canvas.replace(action.getX2(), y, 'x');
+        }
+
+        for (int x = action.getX1(); x <= action.getX2(); x++) {
+            canvas.replace(x, action.getY2(), 'x');
+        }
+
+        logger.debug("handleAction: canvas={}", canvas);
+
+        handleAction(new ActionForPaint());
     }
 
     public void handleException(Exception exc) {

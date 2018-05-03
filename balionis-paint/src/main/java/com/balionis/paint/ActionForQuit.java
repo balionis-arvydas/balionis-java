@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ActionForQuit extends Action {
 
+    public static final String COMMAND = "Q";
+
     private PaintRunner runner;
 
     public static class ActionForQuitBuilder implements ActionBuilder {
@@ -27,7 +29,7 @@ public class ActionForQuit extends Action {
     }
 
     public ActionForQuit() {
-        super("Q");
+        super(COMMAND);
     }
 
     public PaintRunner getRunner() {

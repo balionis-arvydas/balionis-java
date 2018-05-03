@@ -7,6 +7,8 @@ import java.text.ParseException;
 @Component
 public class ActionForPaint extends Action {
 
+    public static final String COMMAND = "P";
+
     public static class ActionForPaintBuilder implements ActionBuilder {
 
         public ActionForPaintBuilder() {
@@ -23,7 +25,7 @@ public class ActionForPaint extends Action {
     }
 
     public ActionForPaint() {
-        super("P");
+        super(COMMAND);
     }
 
     public ActionBuilder builder() {

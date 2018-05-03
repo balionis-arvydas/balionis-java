@@ -15,26 +15,13 @@ public class Canvas {
 		this.width = width;
 		this.height = height;
 		
-		for (int y = 0; y < height + 2; y++) {
+		for (int y = 0; y < height; y++) {
 			StringBuilder line = new StringBuilder();
-			line.append("|");
-            for (int x = 1; x < width + 1; x++) {
+            for (int x = 0; x < width; x++) {
                 line.append(" ");
             }
-            line.append("|");
 			lines.add(line);
 		}
-
-		if (lines.size() > 0) {
-		    StringBuilder first = lines.get(0);
-            StringBuilder last = lines.get(lines.size() - 1);
-
-            for (int x = 0; x < width + 2; x++) {
-                first.setCharAt(x, '-');
-                last.setCharAt(x, '-');
-            }
-        }
-
     }
 
     @Override
@@ -53,8 +40,8 @@ public class Canvas {
     }
 
     public void replace(int x, int y, char c) {
-		if (x >= 0 && x < width - 1 && y >=0 && y < height - 1) {
-			lines.get(y + 1).setCharAt(x + 1, c);
+		if (x > 0 && x <= width && y > 0 && y <= height) {
+			lines.get(y - 1).setCharAt(x - 1, c);
 		} 
 	}
 	

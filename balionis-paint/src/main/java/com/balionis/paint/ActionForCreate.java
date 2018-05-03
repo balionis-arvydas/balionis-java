@@ -7,6 +7,8 @@ import java.text.ParseException;
 @Component
 public class ActionForCreate extends Action {
 
+    public static final String COMMAND = "C";
+
     private int width;
     private int height;
 
@@ -25,19 +27,19 @@ public class ActionForCreate extends Action {
         public Action build() throws PaintException {
             ActionForCreate action = new ActionForCreate();
             if (args.length < 2) {
-                throw new PaintException("C", "usage C <width> <height>");
+                throw new PaintException(COMMAND, "usage C <width> <height>");
             }
             try {
                 action.width = Integer.parseInt(args[1]);
                 if (action.width <= 0) {
-                    throw new PaintException("C", "found width=" + action.width + " but <width> must be positive.");
+                    throw new PaintException(COMMAND, "found width=" + action.width + " but <width> must be positive.");
                 }
                 action.height = Integer.parseInt(args[2]);
                 if (action.height <= 0) {
-                    throw new PaintException("C", "found height=" + action.height + " but <height> must be positive.");
+                    throw new PaintException(COMMAND, "found height=" + action.height + " but <height> must be positive.");
                 }
             } catch (NumberFormatException exc) {
-                throw new PaintException("C", "both <width> and <height> must be integers.");
+                throw new PaintException(COMMAND, "both <width> and <height> must be integers.");
             }
 
             return action;
@@ -45,7 +47,7 @@ public class ActionForCreate extends Action {
     }
 
     public ActionForCreate() {
-        super("C");
+        super(COMMAND);
     }
 
     public ActionBuilder builder() {

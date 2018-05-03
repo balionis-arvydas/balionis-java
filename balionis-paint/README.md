@@ -44,5 +44,49 @@ RUNME.bat
 
 _Note: If all goes well then the command line output should look like this_
 ```
-TODO: copy from console...
+>RUNME.bat
+
+enter command:C 20 5
+
+----------------------
+|                    |
+|                    |
+|                    |
+|                    |
+|                    |
+----------------------
+
+enter command:L 1 3 7 3
+
+----------------------
+|                    |
+|                    |
+|xxxxxxx             |
+|                    |
+|                    |
+----------------------
+
+enter command:L 7 1 7 3
+
+----------------------
+|      x             |
+|      x             |
+|xxxxxxx             |
+|                    |
+|                    |
+----------------------
+
+enter command:R 15 2 20 5
+
+----------------------
+|      x             |
+|      x       xxxxxx|
+|xxxxxxx       x    x|
+|              x    x|
+|              xxxxxx|
+----------------------
+
+enter command:Q
+
+>
 ```
