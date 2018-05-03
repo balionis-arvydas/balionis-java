@@ -2,6 +2,10 @@ package com.balionis.paint;
 
 public interface ActionVisitor {
 
-    void handleAction(QuitAction action);
+    void handleAction(ActionForQuit action);
+
+    void handleAction(ActionForCreate action);
+
+    void handleAction(ActionForPaint action);
 }
 

@@ -25,7 +25,11 @@ public class PaintRunnerImpl implements PaintRunner {
             Action action = reader.readNext(this);
             logger.info("run: action={}", action);
 
-            action.handle(controller);
+            try {
+                action.handle(controller);
+            } catch (Exception exc) {
+                controller.handleException(exc);
+            }
         }
 
         logger.info("run: done");

@@ -3,14 +3,14 @@ package com.balionis.paint;
 import org.springframework.stereotype.Component;
 
 @Component
-public class QuitAction extends Action {
+public class ActionForQuit extends Action {
 
     private PaintRunner runner;
 
-    public static class QuitBuilder implements ActionBuilder {
+    public static class ActionForQuitBuilder implements ActionBuilder {
         private PaintRunner runner;
 
-        public QuitBuilder() {
+        public ActionForQuitBuilder() {
         }
         public ActionBuilder withArguments(String[] args) {
             return this;
@@ -20,13 +20,13 @@ public class QuitAction extends Action {
             return this;
         }
         public Action build() throws PaintException {
-            QuitAction action = new QuitAction();
+            ActionForQuit action = new ActionForQuit();
             action.runner = this.runner;
             return action;
         }
     }
 
-    public QuitAction() {
+    public ActionForQuit() {
         super("Q");
     }
 
@@ -35,7 +35,7 @@ public class QuitAction extends Action {
     }
 
     public ActionBuilder builder() {
-        return new QuitBuilder();
+        return new ActionForQuitBuilder();
     }
 
     public void handle(ActionVisitor visitor) {

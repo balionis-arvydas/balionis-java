@@ -16,13 +16,21 @@ public class ActionFactory {
     private static final Logger logger = LoggerFactory.getLogger(ActionFactory.class);
 
     @Autowired
-    private QuitAction quitPrototype;
+    private ActionForQuit prototypeForQuit;
+
+    @Autowired
+    private ActionForCreate prototypeForCreate;
+
+    @Autowired
+    private ActionForPaint prototypeForPaint;
 
     private Map<String, Action> actions = new HashMap<>();
 
     @PostConstruct
     public void init() {
-        actions.put(quitPrototype.getCommand(), quitPrototype);
+        actions.put(prototypeForQuit.getCommand(), prototypeForQuit);
+        actions.put(prototypeForCreate.getCommand(), prototypeForCreate);
+        actions.put(prototypeForPaint.getCommand(), prototypeForPaint);
 
         logger.debug("init: actions={}", actions);
     }

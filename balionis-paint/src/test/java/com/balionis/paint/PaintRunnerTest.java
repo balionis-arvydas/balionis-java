@@ -22,6 +22,9 @@ public class PaintRunnerTest {
     @MockBean
     private ActionReader readerMock;
 
+    @MockBean
+    private ConsoleWriter writerMock;
+
     @Autowired
     private PaintController controller;
 
@@ -30,10 +33,13 @@ public class PaintRunnerTest {
 
     @Test
     public void testMe() throws PaintException {
-        Action prototype = new QuitAction();
+        Action prototype = new ActionForQuit();
         Action action = prototype.builder().withArguments(Arrays.asList("Q").toArray(new String[0])).withRunner(runner).build();
 
         Mockito.doReturn(action).when(readerMock).readNext(runner);
+
+        Mockito.doNothing().when(writerMock).write(Mockito.anyString());
+        Mockito.doNothing().when(writerMock).writeLine(Mockito.anyString());
 
         runner.run();
 
@@ -49,8 +55,14 @@ public class PaintRunnerTest {
         }
 
         @Bean
+        public CanvasBuilder getCanvasBuilder() {
+            return new CanvasBuilder();
+        }
+
+        @Bean
         public PaintRunner getRunner() {
             return new PaintRunnerImpl();
         }
+
     }
 }

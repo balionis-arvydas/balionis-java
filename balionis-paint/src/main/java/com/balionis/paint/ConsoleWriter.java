@@ -1,10 +1,10 @@
 package com.balionis.paint;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.PrintStream;
 
-@Component
+@Service
 public class ConsoleWriter {
 
     private final PrintStream out;

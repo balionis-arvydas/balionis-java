@@ -1,11 +1,11 @@
 package com.balionis.paint;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
 import java.util.Scanner;
 
-@Component
+@Service
 public class ConsoleReader {
 
     private final Scanner source;
