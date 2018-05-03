@@ -116,6 +116,50 @@ public class PaintRunnerTest {
         Mockito.verify(readerMock, Mockito.times(5)).readLine();
     }
 
+    @Test
+    public void testNoCanvasForLine() {
+
+        Mockito.reset(readerMock);
+        Mockito.reset(writerMock);
+
+        Mockito.when(readerMock.readLine())
+                // .thenReturn("C 20 5")
+                .thenReturn("L 1 3 7 3")
+                .thenReturn("Q")
+                .thenReturn("X");
+
+        Mockito.doNothing().when(writerMock).write(Mockito.anyString());
+        Mockito.doNothing().when(writerMock).writeLine(Mockito.anyString());
+
+        runner.run();
+
+        Mockito.verify(readerMock, Mockito.times(2)).readLine();
+
+        Mockito.verify(writerMock, Mockito.times(1)).writeLine("error: canvas is not defined");
+    }
+
+    @Test
+    public void testNoCanvasForRect() {
+
+        Mockito.reset(readerMock);
+        Mockito.reset(writerMock);
+
+        Mockito.when(readerMock.readLine())
+                // .thenReturn("C 20 5")
+                .thenReturn("R 1 3 7 4")
+                .thenReturn("Q")
+                .thenReturn("X");
+
+        Mockito.doNothing().when(writerMock).write(Mockito.anyString());
+        Mockito.doNothing().when(writerMock).writeLine(Mockito.anyString());
+
+        runner.run();
+
+        Mockito.verify(readerMock, Mockito.times(2)).readLine();
+
+        Mockito.verify(writerMock, Mockito.times(1)).writeLine("error: canvas is not defined");
+    }
+
     @Configuration
     static class Config {
 

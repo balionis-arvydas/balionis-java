@@ -105,6 +105,30 @@ public class PaintControllerTest {
 
     }
 
+    @Test (expected = IllegalStateException.class)
+    public void testNoCanvasForLine() throws ActionException {
+
+        String[] args = {"L", "1", "1", "1", "1"};
+        Action prototype = new ActionForLine();
+        Action action = prototype.builder().withArguments(args).build();
+
+        action.handle(controller);
+
+        assertTrue(false); // should never reach this place
+    }
+
+    @Test (expected = IllegalStateException.class)
+    public void testNoCanvasForRect() throws ActionException {
+
+        String[] args = {"R", "1", "1", "1", "1"};
+        Action prototype = new ActionForLine();
+        Action action = prototype.builder().withArguments(args).build();
+
+        action.handle(controller);
+
+        assertTrue(false); // should never reach this place
+    }
+
     @Configuration
     static class Config {
 
