@@ -1,4 +1,4 @@
-package com.balionis.paint;
+package com.balionis.paint.console;
 
 import org.springframework.stereotype.Service;
 

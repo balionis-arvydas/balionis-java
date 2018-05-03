@@ -1,4 +1,4 @@
-package com.balionis.paint;
+package com.balionis.paint.action;
 
 import org.springframework.stereotype.Component;
 
@@ -21,25 +21,27 @@ public class ActionForCreate extends Action {
             this.args = args;
             return this;
         }
-        public ActionBuilder withRunner(PaintRunner runner) {
+
+        public ActionBuilder withStopper(ActionStopper stopper) {
             return this;
         }
-        public Action build() throws PaintException {
+
+        public Action build() throws ActionException {
             ActionForCreate action = new ActionForCreate();
             if (args.length < 2) {
-                throw new PaintException(COMMAND, "usage C <width> <height>");
+                throw new ActionException(COMMAND, "usage C <width> <height>");
             }
             try {
                 action.width = Integer.parseInt(args[1]);
                 if (action.width <= 0) {
-                    throw new PaintException(COMMAND, "found width=" + action.width + " but <width> must be positive.");
+                    throw new ActionException(COMMAND, "found width=" + action.width + " but <width> must be positive.");
                 }
                 action.height = Integer.parseInt(args[2]);
                 if (action.height <= 0) {
-                    throw new PaintException(COMMAND, "found height=" + action.height + " but <height> must be positive.");
+                    throw new ActionException(COMMAND, "found height=" + action.height + " but <height> must be positive.");
                 }
             } catch (NumberFormatException exc) {
-                throw new PaintException(COMMAND, "both <width> and <height> must be integers.");
+                throw new ActionException(COMMAND, "both <width> and <height> must be integers.");
             }
 
             return action;

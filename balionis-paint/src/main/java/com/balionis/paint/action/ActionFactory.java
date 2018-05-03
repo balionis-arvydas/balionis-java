@@ -1,4 +1,4 @@
-package com.balionis.paint;
+package com.balionis.paint.action;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,10 +43,10 @@ public class ActionFactory {
         logger.debug("init: actions={}", actions);
     }
 
-    public Action findAction(String command) throws PaintException {
+    public Action findAction(String command) throws ActionException {
         Action action = actions.get(command);
         if (action == null) {
-            throw new PaintException(command, "unknown command");
+            throw new ActionException(command, "unknown command");
         }
         return action;
     }

@@ -1,35 +1,35 @@
-package com.balionis.paint;
+package com.balionis.paint.action;
 
 import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 
 @Component
-public class ActionForRect extends Action {
+public class ActionForLine extends Action {
 
-    public static final String COMMAND = "R";
+    public static final String COMMAND = "L";
 
     private int x1;
     private int y1;
     private int x2;
     private int y2;
 
-    public static class ActionForRectBuilder implements ActionBuilder {
+    public static class ActionForLineBuilder implements ActionBuilder {
         private String[] args;
 
-        public ActionForRectBuilder() {
+        public ActionForLineBuilder() {
         }
         public ActionBuilder withArguments(String[] args) {
             this.args = args;
             return this;
         }
-        public ActionBuilder withRunner(PaintRunner runner) {
+        public ActionBuilder withStopper(ActionStopper stopper) {
             return this;
         }
-        public Action build() throws PaintException {
-            ActionForRect action = new ActionForRect();
+        public Action build() throws ActionException {
+            ActionForLine action = new ActionForLine();
             if (args.length < 4) {
-                throw new PaintException(COMMAND, "usage: <x1> <y1> <x2> <y2>");
+                throw new ActionException(COMMAND, "usage: <x1> <y1> <x2> <y2>");
             }
             try {
                 action.x1 = Integer.parseInt(args[1]);
@@ -37,22 +37,25 @@ public class ActionForRect extends Action {
                 action.x2 = Integer.parseInt(args[3]);
                 action.y2 = Integer.parseInt(args[4]);
                 if (action.x1 > action.x2) {
-                    throw new PaintException(COMMAND, "x1 cannot be greater than x2.");
+                    throw new ActionException(COMMAND, "x1 cannot be greater than x2.");
                 }
 
                 if (action.y1 > action.y2) {
-                    throw new PaintException(COMMAND, "y1 cannot be greater than y2.");
+                    throw new ActionException(COMMAND, "y1 cannot be greater than y2.");
                 }
 
+                if (action.x1 != action.x2 && action.y1 != action.y2) {
+                    throw new ActionException(COMMAND, "only horizontal or vertical lines are supported.");
+                }
             } catch (NumberFormatException exc) {
-                throw new PaintException(COMMAND, "<x1> <y1> <x2> <y2> must be integers.");
+                throw new ActionException(COMMAND, "<x1> <y1> <x2> <y2> must be integers.");
             }
 
             return action;
         }
     }
 
-    public ActionForRect() {
+    public ActionForLine() {
         super(COMMAND);
     }
 
@@ -64,7 +67,7 @@ public class ActionForRect extends Action {
     }
 
     public ActionBuilder builder() {
-        return new ActionForRectBuilder();
+        return new ActionForLineBuilder();
     }
 
     public int getX1() {
@@ -81,6 +84,10 @@ public class ActionForRect extends Action {
 
     public int getY2() {
         return y2;
+    }
+
+    public boolean isHorizontal() {
+        return y1 == y2;
     }
 
     public void handle(ActionVisitor visitor) {

@@ -1,10 +1,10 @@
-package com.balionis.paint;
+package com.balionis.paint.action;
 
-public class PaintException extends Exception {
+public class ActionException extends Exception {
 
     private final String command;
 
-    public PaintException(String command, String msg) {
+    public ActionException(String command, String msg) {
         super(msg);
         this.command = command;
     }

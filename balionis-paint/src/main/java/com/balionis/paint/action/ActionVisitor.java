@@ -1,4 +1,4 @@
-package com.balionis.paint;
+package com.balionis.paint.action;
 
 public interface ActionVisitor {
 

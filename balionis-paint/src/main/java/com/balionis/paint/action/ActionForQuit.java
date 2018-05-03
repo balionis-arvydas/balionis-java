@@ -1,4 +1,4 @@
-package com.balionis.paint;
+package com.balionis.paint.action;
 
 import org.springframework.stereotype.Component;
 
@@ -7,23 +7,23 @@ public class ActionForQuit extends Action {
 
     public static final String COMMAND = "Q";
 
-    private PaintRunner runner;
+    private ActionStopper stopper;
 
     public static class ActionForQuitBuilder implements ActionBuilder {
-        private PaintRunner runner;
+        private ActionStopper stopper;
 
         public ActionForQuitBuilder() {
         }
         public ActionBuilder withArguments(String[] args) {
             return this;
         }
-        public ActionBuilder withRunner(PaintRunner runner) {
-            this.runner = runner;
+        public ActionBuilder withStopper(ActionStopper stopper) {
+            this.stopper = stopper;
             return this;
         }
-        public Action build() throws PaintException {
+        public Action build() throws ActionException {
             ActionForQuit action = new ActionForQuit();
-            action.runner = this.runner;
+            action.stopper = this.stopper;
             return action;
         }
     }
@@ -32,8 +32,8 @@ public class ActionForQuit extends Action {
         super(COMMAND);
     }
 
-    public PaintRunner getRunner() {
-        return runner;
+    public ActionStopper getStopper() {
+        return stopper;
     }
 
     public ActionBuilder builder() {

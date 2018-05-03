@@ -1,4 +1,4 @@
-package com.balionis.paint;
+package com.balionis.paint.action;
 
 public abstract class Action {
 
@@ -6,8 +6,8 @@ public abstract class Action {
 
     public interface ActionBuilder {
         ActionBuilder withArguments(String[] args);
-        ActionBuilder withRunner(PaintRunner runner);
-        Action build() throws PaintException;
+        ActionBuilder withStopper(ActionStopper stopper);
+        Action build() throws ActionException;
     }
 
     public Action(String command) {

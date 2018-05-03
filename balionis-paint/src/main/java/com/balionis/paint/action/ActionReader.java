@@ -1,9 +1,12 @@
-package com.balionis.paint;
+package com.balionis.paint.action;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.balionis.paint.console.ConsoleReader;
+import com.balionis.paint.console.ConsoleWriter;
 
 @Component
 public class ActionReader {
@@ -19,7 +22,7 @@ public class ActionReader {
     @Autowired
     private ConsoleWriter writer;
 
-    public Action readNext(PaintRunner runner) {
+    public Action readNext(ActionStopper stopper) {
         logger.info("run: waiting for next input...");
 
         Action action = null;
@@ -39,8 +42,8 @@ public class ActionReader {
 
             try {
                 Action prototype = actionFactory.findAction(args[0]);
-                action = prototype.builder().withRunner(runner).withArguments(args).build();
-            } catch(PaintException exc) {
+                action = prototype.builder().withStopper(stopper).withArguments(args).build();
+            } catch(ActionException exc) {
                 writer.writeLine();
                 writer.writeLine("error: command '" + exc.getCommand() + "' failed. " + exc.getMessage());
             }

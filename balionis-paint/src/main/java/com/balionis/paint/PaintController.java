@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+import com.balionis.paint.action.*;
+import com.balionis.paint.console.*;
+
 @Component
 public class PaintController implements ActionVisitor {
 
@@ -26,7 +29,7 @@ public class PaintController implements ActionVisitor {
 
     public void handleAction(ActionForQuit action) {
         logger.debug("handleAction: action={}", action);
-        action.getRunner().stop();
+        action.getStopper().stop();
     }
 
     public void handleAction(ActionForCreate action) {

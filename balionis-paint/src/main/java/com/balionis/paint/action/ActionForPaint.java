@@ -1,4 +1,4 @@
-package com.balionis.paint;
+package com.balionis.paint.action;
 
 import org.springframework.stereotype.Component;
 
@@ -16,10 +16,10 @@ public class ActionForPaint extends Action {
         public ActionBuilder withArguments(String[] args) {
             return this;
         }
-        public ActionBuilder withRunner(PaintRunner runner) {
+        public ActionBuilder withStopper(ActionStopper stopper) {
             return this;
         }
-        public Action build() throws PaintException {
+        public Action build() throws ActionException {
             return new ActionForPaint();
         }
     }

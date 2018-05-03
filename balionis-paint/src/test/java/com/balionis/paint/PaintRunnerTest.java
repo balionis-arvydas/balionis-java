@@ -13,6 +13,9 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
 
+import com.balionis.paint.action.*;
+import com.balionis.paint.console.*;
+
 /**
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,9 +35,9 @@ public class PaintRunnerTest {
     private PaintRunner runner;
 
     @Test
-    public void testMe() throws PaintException {
+    public void testMe() throws ActionException {
         Action prototype = new ActionForQuit();
-        Action action = prototype.builder().withArguments(Arrays.asList("Q").toArray(new String[0])).withRunner(runner).build();
+        Action action = prototype.builder().withArguments(Arrays.asList("Q").toArray(new String[0])).withStopper(runner).build();
 
         Mockito.doReturn(action).when(readerMock).readNext(runner);
 
@@ -61,7 +64,7 @@ public class PaintRunnerTest {
 
         @Bean
         public PaintRunner getRunner() {
-            return new PaintRunnerImpl();
+            return new PaintRunner();
         }
 
     }
