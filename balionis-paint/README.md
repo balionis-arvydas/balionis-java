@@ -24,43 +24,25 @@ Q | Quit the program
 
 ## Assumptions
 
-1. You have gradle 3.2.1 installed.
+1. You have gradle 4.4.1 installed.
 2. You have java 8 installed.
 3. (optional) Your maven repository is LOCAL_MAVEN_REPOSITORY=.\repository if you want to "install" artifact.
 
 ## Compile
 
 ```
-gradle clean test jar
+gradle --console=plain clean test bootJar
 ```
 
 _Note: the artifact should be produced at balionis-paint\build\libs\balionis-paint-1.0-SNAPSHOT.jar_
 
 ## Run
 
-```diff
-- THIS IS NOT FOR PRODUCTION ENVIRONMENT. TODO: write launcher script.
 ```
-
-```
-gradle run 
+RUNME.bat
 ```
 
 _Note: If all goes well then the command line output should look like this_
 ```
->gradle run
-:compileJava UP-TO-DATE
-:processResources UP-TO-DATE
-:classes UP-TO-DATE
-:run
-19:27:47.819 TKD [main] DEBUG com.balionis.paint.PaintApp - main: args=[]
-<...>
+TODO: copy from console...
 ```
-
-## Test 1
-
-Text
-
-## Test 2
-
-Text

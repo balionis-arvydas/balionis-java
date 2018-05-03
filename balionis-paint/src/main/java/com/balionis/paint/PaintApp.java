@@ -30,11 +30,9 @@ public class PaintApp implements ApplicationRunner {
     }
 
     @Override
-    public void run(ApplicationArguments args) throws InterruptedException {
+    public void run(ApplicationArguments args) {
 
-        Thread runnerThread = new Thread(runner);
-        runnerThread.start();
-        runnerThread.join();
+        runner.run();
 
         logger.info("run: done");
     }

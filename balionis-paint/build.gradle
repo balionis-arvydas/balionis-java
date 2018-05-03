@@ -1,5 +1,10 @@
+plugins {
+    id 'org.springframework.boot' version '2.0.1.RELEASE'
+}
+
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'org.springframework.boot'
 
 group = 'com.balionis'
 version = APP_VERSION
@@ -28,9 +33,13 @@ jar {
     }
 }
 
-// gradle build
 test {
     systemProperties 'property': 'value'
+}
+
+// gradle --console=plain clean test bootJar
+bootJar {
+    mainClassName = 'com.balionis.paint.PaintApp'
 }
 
 // gradle install
@@ -39,17 +48,5 @@ uploadArchives {
         mavenDeployer {
             repository(url: LOCAL_MAVEN_REPOSITORY)
         }
-    }
-}
-
-// gradle run
-task run (type: JavaExec) {
-    classpath = sourceSets.main.runtimeClasspath
-
-    main = 'com.balionis.card.CardApp'
-
-    /* Need to split the space-delimited value in the exec.args */
-    if (System.getProperty("exec.args") != null) {
-        args System.getProperty("exec.args").split()
     }
 }
