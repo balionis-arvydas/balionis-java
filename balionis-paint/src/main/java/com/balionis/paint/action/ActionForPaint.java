@@ -9,16 +9,9 @@ public class ActionForPaint extends Action {
 
     public static final String COMMAND = "P";
 
-    public static class ActionForPaintBuilder implements ActionBuilder {
+    public static class ActionForPaintBuilder extends ActionBuilder {
 
-        public ActionForPaintBuilder() {
-        }
-        public ActionBuilder withArguments(String[] args) {
-            return this;
-        }
-        public ActionBuilder withStopper(ActionStopper stopper) {
-            return this;
-        }
+        @Override
         public Action build() throws ActionException {
             return new ActionForPaint();
         }

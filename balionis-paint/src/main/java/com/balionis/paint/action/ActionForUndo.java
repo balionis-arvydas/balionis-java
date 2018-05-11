@@ -7,16 +7,9 @@ public class ActionForUndo extends Action {
 
     public static final String COMMAND = "U";
 
-    public static class ActionForUndoBuilder implements ActionBuilder {
+    public static class ActionForUndoBuilder extends ActionBuilder {
 
-        public ActionForUndoBuilder() {
-        }
-        public ActionBuilder withArguments(String[] args) {
-            return this;
-        }
-        public ActionBuilder withStopper(ActionStopper stopper) {
-            return this;
-        }
+        @Override
         public Action build() throws ActionException {
             ActionForUndo action = new ActionForUndo();
             return action;

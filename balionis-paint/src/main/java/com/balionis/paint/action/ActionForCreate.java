@@ -12,20 +12,9 @@ public class ActionForCreate extends Action {
     private int width;
     private int height;
 
-    public static class ActionForCreateBuilder implements ActionBuilder {
-        private String[] args;
+    public static class ActionForCreateBuilder extends ActionBuilder {
 
-        public ActionForCreateBuilder() {
-        }
-        public ActionBuilder withArguments(String[] args) {
-            this.args = args;
-            return this;
-        }
-
-        public ActionBuilder withStopper(ActionStopper stopper) {
-            return this;
-        }
-
+        @Override
         public Action build() throws ActionException {
             ActionForCreate action = new ActionForCreate();
             if (args.length < 3) {

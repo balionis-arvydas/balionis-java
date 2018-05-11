@@ -14,18 +14,8 @@ public class ActionForLine extends Action {
     private int x2;
     private int y2;
 
-    public static class ActionForLineBuilder implements ActionBuilder {
-        private String[] args;
-
-        public ActionForLineBuilder() {
-        }
-        public ActionBuilder withArguments(String[] args) {
-            this.args = args;
-            return this;
-        }
-        public ActionBuilder withStopper(ActionStopper stopper) {
-            return this;
-        }
+    public static class ActionForLineBuilder extends ActionBuilder {
+        @Override
         public Action build() throws ActionException {
             ActionForLine action = new ActionForLine();
             if (args.length < 5) {

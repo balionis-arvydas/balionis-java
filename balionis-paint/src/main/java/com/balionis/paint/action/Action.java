@@ -4,10 +4,18 @@ public abstract class Action {
 
     private final String command;
 
-    public interface ActionBuilder {
-        ActionBuilder withArguments(String[] args);
-        ActionBuilder withStopper(ActionStopper stopper);
-        Action build() throws ActionException;
+    public static abstract class ActionBuilder {
+        protected String[] args;
+        protected ActionStopper stopper;
+        public ActionBuilder withArguments(String[] args) {
+            this.args = args;
+            return this;
+        }
+        public ActionBuilder withStopper(ActionStopper stopper) {
+            this.stopper = stopper;
+            return this;
+        }
+        public abstract Action build() throws ActionException;
     }
 
     public Action(String command) {

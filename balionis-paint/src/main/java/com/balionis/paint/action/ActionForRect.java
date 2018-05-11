@@ -14,18 +14,8 @@ public class ActionForRect extends Action {
     private int x2;
     private int y2;
 
-    public static class ActionForRectBuilder implements ActionBuilder {
-        private String[] args;
-
-        public ActionForRectBuilder() {
-        }
-        public ActionBuilder withArguments(String[] args) {
-            this.args = args;
-            return this;
-        }
-        public ActionBuilder withStopper(ActionStopper stopper) {
-            return this;
-        }
+    public static class ActionForRectBuilder extends ActionBuilder {
+        @Override
         public Action build() throws ActionException {
             ActionForRect action = new ActionForRect();
             if (args.length < 5) {
