@@ -82,6 +82,16 @@ enter command:R 15 2 20 5
 |              xxxxxx|
 ----------------------
 
+enter command:U
+
+----------------------
+|      x             |
+|      x             |
+|xxxxxxx             |
+|                    |
+|                    |
+----------------------
+
 enter command:Q
 
 >
