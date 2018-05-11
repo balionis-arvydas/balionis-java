@@ -105,6 +105,16 @@ public class ActionTest {
         assertNull(action); // should never reach this place
     }
 
+    @Test (expected = ActionException.class)
+    public void testBadAction() throws ActionException {
+
+        String[] args = {"X"};
+        Action prototype = actionFactory.findAction(args[0]);
+        ActionForQuit action = (ActionForQuit) prototype.builder().withArguments(args).build();
+
+        assertNull(action); // should never reach this place
+    }
+
     @Configuration
     static class Config {
 
@@ -131,6 +141,11 @@ public class ActionTest {
         @Bean
         public ActionForRect getActionForRect() {
             return new ActionForRect();
+        }
+
+        @Bean
+        public ActionForUndo getActionForUndo() {
+            return new ActionForUndo();
         }
 
         @Bean

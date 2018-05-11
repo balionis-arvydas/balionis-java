@@ -15,7 +15,7 @@ public class CanvasBuilder {
     }
 
     public Canvas build() {
-        return new CanvasDecorator(width, height);
+        return new CanvasDecorator(new CanvasHolder(width, height));
     }
 }
 

@@ -30,6 +30,9 @@ public class ActionFactory {
     @Autowired
     private ActionForRect prototypeForRect;
 
+    @Autowired
+    private ActionForUndo prototypeForUndo;
+
     private Map<String, Action> actions = new HashMap<>();
 
     @PostConstruct
@@ -39,6 +42,7 @@ public class ActionFactory {
         actions.put(prototypeForPaint.getCommand(), prototypeForPaint);
         actions.put(prototypeForLine.getCommand(), prototypeForLine);
         actions.put(prototypeForRect.getCommand(), prototypeForRect);
+        actions.put(prototypeForUndo.getCommand(), prototypeForUndo);
 
         logger.debug("init: actions={}", actions);
     }

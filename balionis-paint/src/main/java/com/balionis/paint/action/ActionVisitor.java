@@ -11,5 +11,7 @@ public interface ActionVisitor {
     void handleAction(ActionForLine action);
 
     void handleAction(ActionForRect action);
+
+    void handleAction(ActionForUndo action);
 }
 

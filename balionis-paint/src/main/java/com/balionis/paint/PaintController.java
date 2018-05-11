@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.balionis.paint.action.*;
 import com.balionis.paint.console.*;
@@ -20,6 +21,9 @@ public class PaintController implements ActionVisitor {
 
     @Autowired
     private ConsoleWriter writer;
+
+    @Autowired
+    private CanvasHistory history;
 
     private Canvas canvas;
 
@@ -36,6 +40,8 @@ public class PaintController implements ActionVisitor {
         logger.debug("handleAction: action={}", action);
 
         canvas = canvasBuilder.withDimensions(action.getWidth(), action.getHeight()).build();
+
+        history.clear();
 
         logger.debug("handleAction: canvas={}", canvas);
 
@@ -60,6 +66,8 @@ public class PaintController implements ActionVisitor {
 
         if (canvas == null) {
             throw new IllegalStateException("canvas is not defined");
+        } else {
+            history.push((Canvas) canvas.clone());
         }
 
         if (action.isHorizontal()) {
@@ -82,6 +90,8 @@ public class PaintController implements ActionVisitor {
 
         if (canvas == null) {
             throw new IllegalStateException("canvas is not defined");
+        } else {
+            history.push((Canvas) canvas.clone());
         }
 
         for (int x = action.getX1(); x <= action.getX2(); x++) {
@@ -95,6 +105,22 @@ public class PaintController implements ActionVisitor {
 
         for (int x = action.getX1(); x <= action.getX2(); x++) {
             canvas.replace(x, action.getY2(), 'x');
+        }
+
+        logger.debug("handleAction: canvas={}", canvas);
+
+        handleAction(new ActionForPaint());
+    }
+
+    public void handleAction(ActionForUndo action) {
+
+        logger.debug("handleAction: action={}", action);
+
+        Optional<Canvas> prev = history.pop();
+        if (!prev.isPresent()) {
+            throw new IllegalStateException("nothing to undo");
+        } else {
+            canvas = prev.get();
         }
 
         logger.debug("handleAction: canvas={}", canvas);

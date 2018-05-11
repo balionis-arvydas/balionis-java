@@ -129,6 +129,18 @@ public class PaintControllerTest {
         assertTrue(false); // should never reach this place
     }
 
+    @Test (expected = IllegalStateException.class)
+    public void testNoCanvasForUndo() throws ActionException {
+
+        String[] args = {"U"};
+        Action prototype = new ActionForUndo();
+        Action action = prototype.builder().withArguments(args).build();
+
+        action.handle(controller);
+
+        assertTrue(false); // should never reach this place
+    }
+
     @Configuration
     static class Config {
 
@@ -140,6 +152,11 @@ public class PaintControllerTest {
         @Bean
         public CanvasBuilder getCanvasBuilder() {
             return new CanvasBuilder();
+        }
+
+        @Bean
+        public CanvasHistory getCanvasHistory() {
+            return new CanvasHistory();
         }
 
         @Bean

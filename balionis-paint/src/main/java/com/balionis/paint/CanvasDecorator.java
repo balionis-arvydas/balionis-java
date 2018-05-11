@@ -4,19 +4,25 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-public class CanvasDecorator extends Canvas {
+public class CanvasDecorator implements Canvas {
 
-    public CanvasDecorator(int width, int height) {
-		super(width, height);
+    private CanvasHolder holder;
+
+    public CanvasDecorator(CanvasHolder holder) {
+		this.holder = holder;
+    }
+
+    public void replace(int x, int y, char c) {
+        holder.replace(x, y, c);
     }
 
     public List<String> getLines() {
 		StringBuilder border = new StringBuilder();
-        for (int x = 0; x < super.getWidth() + 2; x++) {
+        for (int x = 0; x < holder.getWidth() + 2; x++) {
             border.append("-");
         }
 
-        List<String> lines = super.getLines().stream().map(x -> "|" + x + "|").collect(Collectors.toList());
+        List<String> lines = holder.getLines().stream().map(x -> "|" + x + "|").collect(Collectors.toList());
 
         lines.add(0, border.toString());
         lines.add(border.toString());
@@ -24,5 +30,8 @@ public class CanvasDecorator extends Canvas {
         return lines;
 	}
 
+    public Canvas clone() {
+        return new CanvasDecorator((CanvasHolder) holder.clone());
+    }
 }
 

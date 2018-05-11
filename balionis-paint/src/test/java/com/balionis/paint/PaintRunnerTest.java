@@ -117,6 +117,40 @@ public class PaintRunnerTest {
     }
 
     @Test
+    public void testUndo() {
+
+        Mockito.reset(readerMock);
+        Mockito.when(readerMock.readLine())
+                .thenReturn("C 20 5")
+                .thenReturn("L 1 3 7 3")
+                .thenReturn("L 7 1 7 3")
+                .thenReturn("R 15 2 20 5")
+                .thenReturn("U")
+                .thenReturn("Q")
+                .thenReturn("X");
+
+        Mockito.doNothing().when(writerMock).write(Mockito.anyString());
+        Mockito.doNothing().when(writerMock).writeLine(Mockito.anyString());
+
+        String[] expect =  {
+                "----------------------",
+                "|      x             |",
+                "|      x             |",
+                "|xxxxxxx             |",
+                "|                    |",
+                "|                    |",
+                "----------------------" };
+
+        runner.run();
+
+        String[] actual = controller.getCanvas().getLines().toArray(new String[0]);
+
+        assertTrue(Arrays.equals(expect, actual));
+
+        Mockito.verify(readerMock, Mockito.times(6)).readLine();
+    }
+
+    @Test
     public void testNoCanvasForLine() {
 
         Mockito.reset(readerMock);
@@ -160,6 +194,52 @@ public class PaintRunnerTest {
         Mockito.verify(writerMock, Mockito.times(1)).writeLine("error: canvas is not defined");
     }
 
+    @Test
+    public void testNoHistory() {
+
+        Mockito.reset(readerMock);
+        Mockito.reset(writerMock);
+
+        Mockito.when(readerMock.readLine())
+                // .thenReturn("C 20 5")
+                .thenReturn("U")
+                .thenReturn("Q")
+                .thenReturn("X");
+
+        Mockito.doNothing().when(writerMock).write(Mockito.anyString());
+        Mockito.doNothing().when(writerMock).writeLine(Mockito.anyString());
+
+        runner.run();
+
+        Mockito.verify(readerMock, Mockito.times(2)).readLine();
+
+        Mockito.verify(writerMock, Mockito.times(1)).writeLine("error: nothing to undo");
+    }
+
+    @Test
+    public void testNoHistoryMultiple() {
+
+        Mockito.reset(readerMock);
+        Mockito.reset(writerMock);
+
+        Mockito.when(readerMock.readLine())
+                .thenReturn("C 20 5")
+                .thenReturn("L 1 3 7 3")
+                .thenReturn("U")
+                .thenReturn("U")
+                .thenReturn("Q")
+                .thenReturn("X");
+
+        Mockito.doNothing().when(writerMock).write(Mockito.anyString());
+        Mockito.doNothing().when(writerMock).writeLine(Mockito.anyString());
+
+        runner.run();
+
+        Mockito.verify(readerMock, Mockito.times(5)).readLine();
+
+        Mockito.verify(writerMock, Mockito.times(1)).writeLine("error: nothing to undo");
+    }
+
     @Configuration
     static class Config {
 
@@ -171,6 +251,11 @@ public class PaintRunnerTest {
         @Bean
         public CanvasBuilder getCanvasBuilder() {
             return new CanvasBuilder();
+        }
+
+        @Bean
+        public CanvasHistory getCanvasHistory() {
+            return new CanvasHistory();
         }
 
         @Bean
@@ -196,6 +281,11 @@ public class PaintRunnerTest {
         @Bean
         public ActionForRect getActionForRect() {
             return new ActionForRect();
+        }
+
+        @Bean
+        public ActionForUndo getActionForUndo() {
+            return new ActionForUndo();
         }
 
         @Bean
