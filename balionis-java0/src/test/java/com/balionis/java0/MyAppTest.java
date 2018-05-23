@@ -10,7 +10,7 @@ public class MyAppTest {
     @Test
     public void testMe() {
 
-        MyApp app = new MyApp();
+        // MyApp app = new MyApp();
 
         assertTrue(true);
     }
