@@ -16,5 +16,6 @@ public class MazeWriter {
         lines.stream().forEach((line) -> {
             writer.println(line);
         });
+		writer.flush();
     }
 }

@@ -71,7 +71,7 @@
                 <configuration>
                     <mainClass>com.balionis.maze.App</mainClass>
                     <arguments>
-                        <argument>classpath:ExampleMaze.txt</argument>
+                        <argument>classpath:/ExampleMaze.txt</argument>
                     </arguments>
                 </configuration>
             </plugin>

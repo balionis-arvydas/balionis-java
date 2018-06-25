@@ -18,5 +18,6 @@ public class ExplorerWriter {
                     + ", " + move.position.y
                     + ", " + move.direction.value + "]")
         );
+		writer.flush();
     }
 }
