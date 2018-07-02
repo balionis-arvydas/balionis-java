@@ -12,8 +12,8 @@ public class MazeReaderTest {
 
     @Test
     public void testFile() throws IOException {
-        MazeReader reader = new MazeReader();
-        Maze maze = reader.readMaze("./src/main/resources/ExampleMaze.txt");
+        MazeReader reader = new MazeReader("./src/main/resources/ExampleMaze.txt");
+        Maze maze = reader.readMaze();
 
         assertEquals(15, maze.getHeight());
         assertEquals(15, maze.getWidth());
@@ -21,8 +21,8 @@ public class MazeReaderTest {
 
     @Test
     public void testResource() throws IOException {
-        MazeReader reader = new MazeReader();
-        Maze maze = reader.readMaze("classpath:/ExampleMaze.txt");
+        MazeReader reader = new MazeReader("classpath:/ExampleMaze.txt");
+        Maze maze = reader.readMaze();
 
         assertEquals(15, maze.getHeight());
         assertEquals(15, maze.getWidth());
@@ -30,8 +30,8 @@ public class MazeReaderTest {
 
     @Test(expected = IOException.class)
     public void testNoResource() throws IOException {
-        MazeReader reader = new MazeReader();
-        Maze maze = reader.readMaze("classpath:ExampleMaze.txt");
+        MazeReader reader = new MazeReader("classpath:ExampleMaze.txt");
+        Maze maze = reader.readMaze();
 
         assertNotNull(maze); // never reach this place
     }

@@ -10,15 +10,12 @@ public class App {
 
     private static final Logger LOGGER = Logger.getLogger(App.class);
 
-    private String filename;
-
     private MazeReader      mazeReader;
     private MazeWriter      mazeWriter;
     private Explorer        explorer;
     private ExplorerWriter  explorerWriter;
 
-    public App(String filename, MazeReader mazeReader, MazeWriter mazeWriter, Explorer explorer, ExplorerWriter explorerWriter) {
-        this.filename = filename;
+    public App(MazeReader mazeReader, MazeWriter mazeWriter, Explorer explorer, ExplorerWriter explorerWriter) {
         this.mazeReader = mazeReader;
         this.mazeWriter = mazeWriter;
         this.explorer = explorer;
@@ -26,15 +23,16 @@ public class App {
     }
 
     public void run() throws IOException {
-        LOGGER.info("filename=" + filename);
 
-        Maze maze = mazeReader.readMaze(filename);
+        Maze maze = mazeReader.readMaze();
         mazeWriter.write(maze);
+
+        LOGGER.info("maze=" + maze);
 
         List<Explorer.Move> moves = explorer.explore(maze);
         explorerWriter.write(moves);
 
-        LOGGER.info("done=" + filename);
+        LOGGER.info("moves=" + moves);
     }
 
     public static void main(String[] args) {
@@ -49,12 +47,15 @@ public class App {
         MazeWriter mazeWriter = new MazeWriter(new PrintWriter(System.out));
         ExplorerWriter explorerWriter = new ExplorerWriter(new PrintWriter(System.out));
 
-        App app = new App(filename, new MazeReader(), mazeWriter, new Explorer(), explorerWriter);
+        App app = new App(new MazeReader(filename), mazeWriter, new Explorer(), explorerWriter);
 
         try {
             app.run();
         } catch (IOException exc) {
-            LOGGER.error("cannot read filename {" + filename + "}", exc);
+            String msg = "cannot read filename {" + filename + "}";
+            System.out.println("error: " + msg);
+            LOGGER.error(msg, exc);
+            System.exit(1);
         }
 		
     }

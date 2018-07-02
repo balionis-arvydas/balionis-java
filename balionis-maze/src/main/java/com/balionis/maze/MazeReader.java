@@ -7,7 +7,13 @@ import java.util.stream.Collectors;
 
 public class MazeReader {
 
-    public Maze readMaze(String filename) throws IOException {
+    private String filename;
+
+    public MazeReader(String filename) {
+        this.filename = filename;
+    }
+
+    public Maze readMaze() throws IOException {
         List<String> lines;
         if (filename.startsWith("classpath:")) {
             try (InputStream resource = MazeReader.class.getResourceAsStream(filename.replaceFirst("classpath:", ""))) {

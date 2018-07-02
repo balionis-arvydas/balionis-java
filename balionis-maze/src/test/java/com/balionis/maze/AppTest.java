@@ -26,7 +26,7 @@ public class AppTest {
         StringWriter journalBuffer = new StringWriter();
         ExplorerWriter explorerWriter = new ExplorerWriter(new PrintWriter(journalBuffer));
 
-        App app = new App(filename, new MazeReader(), mazeWriter, new Explorer(), explorerWriter);
+        App app = new App(new MazeReader(filename), mazeWriter, new Explorer(), explorerWriter);
 
         app.run();
 
@@ -66,7 +66,7 @@ public class AppTest {
         StringWriter journalBuffer = new StringWriter();
         ExplorerWriter explorerWriter = new ExplorerWriter(new PrintWriter(journalBuffer));
 
-        App app = new App(filename, new MazeReader(), mazeWriter, new Explorer(), explorerWriter);
+        App app = new App(new MazeReader(filename), mazeWriter, new Explorer(), explorerWriter);
 
         app.run();
 
@@ -86,7 +86,7 @@ public class AppTest {
         StringWriter journalBuffer = new StringWriter();
         ExplorerWriter explorerWriter = new ExplorerWriter(new PrintWriter(journalBuffer));
 
-        App app = new App(filename, new MazeReader(), mazeWriter, new Explorer(), explorerWriter);
+        App app = new App(new MazeReader(filename), mazeWriter, new Explorer(), explorerWriter);
 
         app.run();
 
