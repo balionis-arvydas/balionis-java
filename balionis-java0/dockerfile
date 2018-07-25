@@ -8,7 +8,7 @@ WORKDIR /usr/local/docker/balionis-java0
 ADD build/distributions/balionis-java0-1.0-SNAPSHOT.tar.gz /usr/local/docker/balionis-java0
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
+# RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 # Define environment variable
 ENV JAVA_HOME /usr/local/jdk1.8.0
