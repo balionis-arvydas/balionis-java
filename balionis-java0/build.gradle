@@ -25,6 +25,24 @@ test {
     systemProperties 'property': 'value'
 }
 
+task tar(type: Tar) {
+    extension = 'tar.gz'
+    compression = Compression.GZIP
+    from (jar) {
+        rename { String filename ->
+	        if (filename.indexOf(project.name + '-' + project.version) >= 0) {
+	            return filename.replace('-' + project.version,'')
+	        } else {
+	            return filename
+	        }
+		}	
+        into 'lib'
+    } 
+    from ('src/main/scripts') {
+        into 'bin'
+    } 
+}
+
 // gradle install
 uploadArchives {
     repositories {

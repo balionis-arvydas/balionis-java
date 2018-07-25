@@ -36,7 +36,7 @@ def main_args():
     return args
 
 def main(args):
-    args = ['lib/balionis-java0-1.0-SNAPSHOT.jar','com.balionis.java0.MyApp', str(args.p1), args.p2]
+    args = ['lib/balionis-java0.jar','com.balionis.java0.MyApp', str(args.p1), args.p2]
     ret = jarWrapper(*args)
     logging.info('done with ' + str(ret))
     return ret    
