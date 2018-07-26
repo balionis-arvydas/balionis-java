@@ -1,0 +1,12 @@
+# Use an official Python runtime as a parent image
+FROM python:2.7-slim
+
+WORKDIR /usr/local/docker/balionis-docker2
+
+ADD target/balionis-docker2-1.0-SNAPSHOT.tar.gz /usr/local/docker/balionis-docker2
+
+# Define environment variable
+ENV JAVA_HOME /usr/local/jdk1.8.0
+
+# Run app.py when the container launches
+CMD ["python", "bin/app.py", "--p1", "123", "--p2", "abc"]
