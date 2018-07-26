@@ -8,8 +8,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
-        <build.timestamp>${maven.build.timestamp}</build.timestamp>
-        <build.number>SNAPSHOT</build.number>
+        <buildTimestamp>${maven.build.timestamp}</buildTimestamp>
+        <buildNumber>SNAPSHOT</buildNumber>
     </properties>
 
     <scm>
@@ -30,9 +30,10 @@
 
         <plugins>
             <plugin>
+                <!-- generate 'buildNumber' if jenkins failed to pass -DbuildNumber=${BUILD_NUMBER} -->
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>buildnumber-maven-plugin</artifactId>
-                <version>1.2</version>
+                <version>1.4</version>
                 <executions>
                     <execution>
                         <phase>validate</phase>
@@ -42,11 +43,9 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <doCheck>false</doCheck>
-                    <doUpdate>false</doUpdate>
-                    <!-- This ensures that even if we are not connected to scm than also take the version from local .svn file -->
+                    <doCheck>true</doCheck>
+                    <doUpdate>true</doUpdate>
                     <revisionOnScmFailure>true</revisionOnScmFailure>
-                    <!-- Generate sequence build number based on: build number and timestamp -->
                     <format>{0}_{1,date,yyyyMMddHHmmss}</format>
                     <items>
                         <item>buildNumber\d*</item>
@@ -67,7 +66,7 @@
                             <tasks>
                                 <!-- Safety -->
                                 <mkdir dir="${project.build.directory}"/>
-                                <echo file="${basedir}/target/filter.properties" message="buildTime=${build.timestamp}"/>
+                                <echo file="${basedir}/target/filter.properties" message="buildTimestamp=${buildTimestamp}"/>
                             </tasks>
                         </configuration>
                     </execution>
@@ -92,8 +91,8 @@
                         <manifestEntries>
                             <Specification-Title>${project.name}</Specification-Title>
                             <Specification-Version>${project.version}</Specification-Version>
-                            <Implementation-Version>${build.number}</Implementation-Version>          
-                            <Build-Time>${build.timestamp}</Build-Time>
+                            <Implementation-Version>${buildNumber}</Implementation-Version>
+                            <Build-Time>${buildTimestamp}</Build-Time>
                         </manifestEntries>
                     </archive>
                 </configuration>				
