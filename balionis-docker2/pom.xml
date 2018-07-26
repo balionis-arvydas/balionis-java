@@ -10,6 +10,7 @@
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
         <buildTimestamp>${maven.build.timestamp}</buildTimestamp>
         <buildNumber>SNAPSHOT</buildNumber>
+        <dockerId>baliarvy</dockerId>
     </properties>
 
     <scm>
@@ -163,18 +164,31 @@
                                 <id>docker:build</id>
                                 <phase>package</phase>
                                 <goals>
+                                    <goal>stop</goal>
                                     <goal>build</goal>
                                 </goals>
                             </execution>
                             <execution>
-                                <id>docker:start</id>
+                                <id>docker:push</id>
                                 <phase>install</phase>
                                 <goals>
-                                    <goal>run</goal>
-                                    <goal>logs</goal>
+                                    <goal>stop</goal>
+                                    <goal>push</goal>
                                 </goals>
                             </execution>
                         </executions>
+                        <configuration>
+                            <images>
+                                <image>
+                                    <name>${dockerId}/${project.name}:${project.version}</name>
+                                    <alias>${project.name}</alias>
+                                    <build>
+                                        <dockerFile>dockerfile</dockerFile>
+                                        <dockerFileDir>${project.basedir}</dockerFileDir>
+                                    </build>
+                                </image>
+                            </images>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
