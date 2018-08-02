@@ -1,6 +1,11 @@
 package com.balionis.docker2;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 public class MyApp {
+
+    private static Logger logger = LoggerFactory.getLogger(MyApp.class);
 
 	private String name;
 
@@ -9,6 +14,7 @@ public class MyApp {
     }
 	
     public String echo(String msg) {
+        logger.info("echo: msg={}", msg);
         return name + ":" + msg;
     }
 
