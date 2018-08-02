@@ -73,7 +73,23 @@
                     </execution>
                 </executions>
             </plugin>
-
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>templating-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>filter-sources</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirectory>${basedir}/src/main/docker</sourceDirectory>
+                            <outputDirectory>${project.build.directory}/docker</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -146,6 +162,7 @@
                     <descriptors>
                         <descriptor>src/main/assembly/assembly.xml</descriptor>
                     </descriptors>
+                    <outputDirectory>${project.build.directory}/docker</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>  
@@ -164,7 +181,7 @@
                                 <id>docker:build</id>
                                 <phase>package</phase>
                                 <goals>
-                                    <goal>stop</goal>
+                                    <!-- goal>stop</goal -->
                                     <goal>build</goal>
                                 </goals>
                             </execution>
@@ -172,7 +189,7 @@
                                 <id>docker:push</id>
                                 <phase>install</phase>
                                 <goals>
-                                    <goal>stop</goal>
+                                    <!-- goal>stop</goal -->
                                     <goal>push</goal>
                                 </goals>
                             </execution>
@@ -184,7 +201,7 @@
                                     <alias>${project.name}</alias>
                                     <build>
                                         <dockerFile>dockerfile</dockerFile>
-                                        <dockerFileDir>${project.basedir}</dockerFileDir>
+                                        <dockerFileDir>${project.build.directory}/docker</dockerFileDir>
                                     </build>
                                 </image>
                             </images>

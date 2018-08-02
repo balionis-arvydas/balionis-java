@@ -1,9 +1,9 @@
 # Use an official Python runtime as a parent image
 FROM python:2.7-slim
 
-WORKDIR /usr/local/docker/balionis-docker2-1.0-SNAPSHOT
+WORKDIR /usr/local/docker/${project.artifactId}-${project.version}
 
-ADD target/balionis-docker2-1.0-SNAPSHOT-bin.tar.gz /usr/local/docker
+ADD ${project.artifactId}-${project.version}-bin.tar.gz /usr/local/docker
 
 # Define environment variable
 ENV JAVA_HOME /usr/local/jdk1.8.0
