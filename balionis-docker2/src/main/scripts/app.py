@@ -36,7 +36,7 @@ def main_args():
     return args
 
 def main(args):
-    jars = [os.path.join('lib','balionis-docker2-1.0-SNAPSHOT.jar')]
+    jars = []
     for file in os.listdir('lib'):
         if file.endswith('.jar'):
             jars.append(os.path.join('lib', str(file)))
