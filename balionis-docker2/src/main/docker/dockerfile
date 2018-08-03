@@ -3,7 +3,7 @@ FROM python:2.7-slim
 
 WORKDIR /usr/local/docker/${project.artifactId}-${project.version}
 
-ADD ${project.artifactId}-${project.version}-bin.tar.gz /usr/local/docker
+ADD target/${project.artifactId}-${project.version}-bin.tar.gz /usr/local/docker
 
 # Define environment variable
 ENV JAVA_HOME /usr/local/jdk1.8.0

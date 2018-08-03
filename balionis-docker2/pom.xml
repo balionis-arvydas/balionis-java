@@ -149,7 +149,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.2.1</version>
+                <version>3.1.0</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -162,7 +162,7 @@
                     <descriptors>
                         <descriptor>src/main/assembly/assembly.xml</descriptor>
                     </descriptors>
-                    <outputDirectory>${project.build.directory}/docker</outputDirectory>
+                    <outputDirectory>${project.build.directory}</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>  
