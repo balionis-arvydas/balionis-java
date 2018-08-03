@@ -36,10 +36,10 @@ def main_args():
     return args
 
 def main(args):
-    jars = [os.path.join('lib','balionis-docker2-1.0-SNAPSHOT.jar']
+    jars = [os.path.join('lib','balionis-docker2-1.0-SNAPSHOT.jar')]
     for file in os.listdir('lib'):
         if file.endswith('.jar'):
-            jars += os.path.join('lib', file)
+            jars.append(os.path.join('lib', str(file)))
     cp = str(os.pathsep).join(jars)
     args = [cp,'com.balionis.docker2.MyApp', str(args.p1), args.p2]
     ret = jarWrapper(*args)
