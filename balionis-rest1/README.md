@@ -2,9 +2,9 @@
 
 This package is meant to provide me with the prototype of build, test, package and dist the following stack:
 1) jersey based restapi
-2) packaged as java war with gradle
-3) tested with junit?
-4) deployable under standalone jetty.
+2) packaged with gradle
+3) tested with junit
+4) runnable as standalone jetty.
 
 # How?
 
