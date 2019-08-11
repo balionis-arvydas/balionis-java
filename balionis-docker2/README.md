@@ -42,7 +42,7 @@ mvn clean install -Pdocker
 ```
 
 ### Verify:
-https://hub.docker.com/r/baliarvy/balionis-docker2/tags/
+https://cloud.docker.com/repository/docker/baliarvy/balionis-docker2/tags
 
 ## Run
 
