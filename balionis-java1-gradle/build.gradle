@@ -1,12 +1,27 @@
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'maven-publish'
+apply plugin: 'maven-publish-auth'
 
 group = 'com.balionis'
 version = APP_VERSION
 sourceCompatibility = 1.8
 
+buildscript {
+    dependencies {
+        classpath 'org.hibernate.build.gradle:gradle-maven-publish-auth:2.0.1'
+    }
+    repositories {
+        mavenCentral()
+    }
+}
+
 repositories {
+    maven {
+        url "http://nexus.balionis.com:8081/repository/maven-releases/"
+    }
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -27,11 +42,22 @@ test {
     systemProperties 'property': 'value'
 }
 
-// gradle install
-uploadArchives {
+// gradle publish
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
     repositories {
-        mavenDeployer {
-            repository(url: LOCAL_MAVEN_REPOSITORY)
+        maven {
+            if(project.version.endsWith('-SNAPSHOT')) {
+                name "InternalSnapshots"
+                url "http://nexus.balionis.com:8081/repository/maven-snapshots/"
+            } else {
+                name "InternalReleases"
+                url "http://nexus.balionis.com:8081/repository/maven-releases/"
+            }
         }
     }
 }
