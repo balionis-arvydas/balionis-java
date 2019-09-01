@@ -91,5 +91,19 @@
             <version>1.1.1</version>			
         </dependency>    
     </dependencies>
+	<distributionManagement>
+		<repository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>InternalReleases</id>
+			<name>Internal Releases</name>
+			<url>http://nexus.balionis.com:8081/repository/maven-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<uniqueVersion>true</uniqueVersion>
+			<id>InternalSnapshots</id>
+			<name>Internal Releases</name>
+			<url>http://nexus.balionis.com:8081/repository/maven-snapshots/</url>			
+		</snapshotRepository>
+	</distributionManagement>  
 	
 </project>
