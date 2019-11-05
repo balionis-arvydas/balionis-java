@@ -18,7 +18,7 @@
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- Daily rollover -->
-            <fileNamePattern>log/MyApp4.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>balionis-java4.%d{yyyy-MM-dd}.log</fileNamePattern>
 
             <!-- Keep 7 days' worth of history -->
             <maxHistory>7</maxHistory>
