@@ -2,6 +2,13 @@
 
 This package is meant to provide me with the java stream classes.
 
+1) MyApp1 - parse number from string '0a1c3' -> 13. uses filter and reduce.
+2) MyApp2 - compute histogram of 2 buckets from 1.0, 1.1, 1.4, 1.7, 5.3, 5.4, 9.9.
+3) MyApp3 - compute histogram of x buckets from chars '0123456'.
+4) MyApp4 - find the second largest number.
+5) MyApp5 - transform string into list of tuples (char,byte).
+6) MyApp6 - find student with largest average score.
+
 # How?
 
 ## Setup
