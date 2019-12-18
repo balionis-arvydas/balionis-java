@@ -10,6 +10,7 @@ It's a 'GS' java algos project using gradle.
             subject to the following constraints: cannot pick numbers which are adjacent in position in the array.
 6) MyApp6 - use operators +, - , *, /, and || to get the maximum and minimum of two numbers.
 7) MyApp7 - design an algorithm to check if a graph is hamiltonian or not. 
+8) MyApp8 - to find the pieces of land (aka islands).
 
 # Build
 ```
