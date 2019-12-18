@@ -11,6 +11,9 @@ It's a 'GS' java algos project using gradle.
 6) MyApp6 - use operators +, - , *, /, and || to get the maximum and minimum of two numbers.
 7) MyApp7 - design an algorithm to check if a graph is hamiltonian or not. 
 8) MyApp8 - to find the pieces of land (aka islands).
+9) MyApp9 - count in how many ways I can add English coins to the desired amount.
+10) MyApp10 - depth-first search algorithm to get all leaves
+
 
 # Build
 ```
