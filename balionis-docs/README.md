@@ -9,3 +9,6 @@
 
 ![alt text](docs/images/2.jpg "Project 2 Components")
  
+### Project 3:
+
+![alt text](docs/images/3.jpg "Project 3 Components")
