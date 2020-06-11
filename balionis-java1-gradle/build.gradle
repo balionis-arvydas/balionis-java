@@ -52,10 +52,10 @@ publishing {
     repositories {
         maven {
             if(project.version.endsWith('-SNAPSHOT')) {
-                name "InternalSnapshots"
+                name "maven-snapshots"
                 url "http://nexus.balionis.com:8081/repository/maven-snapshots/"
             } else {
-                name "InternalReleases"
+                name "maven-releases"
                 url "http://nexus.balionis.com:8081/repository/maven-releases/"
             }
         }

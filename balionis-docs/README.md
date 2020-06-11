@@ -12,3 +12,7 @@
 ### Project 3:
 
 ![alt text](docs/images/3.jpg "Project 3 Components")
+
+### Project 4:
+
+![alt text](docs/images/4.jpg "Project 4 Components")
