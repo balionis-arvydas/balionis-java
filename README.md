@@ -15,5 +15,6 @@ This set of packages is meant to provide me with the prototype of build, test, p
 8. balionis-docker1      - spike how to use docker
 9. balionis-docker2      - spike for java app run by python launcher with builds pushed into docker hub. uses maven to build.
 10. balionis-java4       - spike for ICE sandbox (gradle, Mockito, logback); 
-10. balionis-java5       - spike for GS sandbox; 
+11. balionis-java5       - spike for GS sandbox; 
+11. balionis-aws1        - spike for AWS lambdas; 
 99. balionis-docs        - last projects napkings...
