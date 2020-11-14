@@ -14,8 +14,8 @@
   <packaging>pom</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <modules>
-    <module>example-runtime-bundle</module>
-    <module>example-cloud-connector</module>
+    <module>balionis-activiti7-runtime</module>
+    <module>balionis-activiti7-connector</module>
   </modules>
   <properties>
     <java.release>11</java.release>
