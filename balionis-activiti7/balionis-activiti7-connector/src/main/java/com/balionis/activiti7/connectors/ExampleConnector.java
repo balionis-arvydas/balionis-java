@@ -59,7 +59,7 @@ public class ExampleConnector {
         this.integrationResultSender = integrationResultSender;
     }
 
-    @StreamListener(value = ExampleConnectorChannels.EXAMPLE_CONNECTOR_CONSUMER)
+    @StreamListener(value = ExampleConnector.Channels.EXAMPLE_CONNECTOR_CONSUMER)
     public void performTask(IntegrationRequest event) throws InterruptedException {
 
         logger.info(append("service-name",

@@ -15,21 +15,20 @@ import org.springframework.stereotype.Component;
 @EnableBinding(TestBpmnErrorConnector.Channels.class)
 public class TestBpmnErrorConnector {
 
-    private IntegrationErrorSender integrationErrorSender;
-    private ConnectorProperties connectorProperties;
-
-    public TestBpmnErrorConnector(IntegrationErrorSender integrationErrorSender,
-        ConnectorProperties connectorProperties) {
-        this.integrationErrorSender = integrationErrorSender;
-        this.connectorProperties = connectorProperties;
-    }
-
     public interface Channels {
 
         String CHANNEL = "testBpmnErrorConnectorInput";
 
         @Input(CHANNEL)
         SubscribableChannel testBpmnErrorConnectorInput();
+    }
+
+    private IntegrationErrorSender integrationErrorSender;
+    private ConnectorProperties connectorProperties;
+
+    public TestBpmnErrorConnector(IntegrationErrorSender integrationErrorSender, ConnectorProperties connectorProperties) {
+        this.integrationErrorSender = integrationErrorSender;
+        this.connectorProperties = connectorProperties;
     }
 
     @StreamListener(value = Channels.CHANNEL)

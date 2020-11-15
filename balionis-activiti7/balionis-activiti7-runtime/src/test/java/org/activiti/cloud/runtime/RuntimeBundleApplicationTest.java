@@ -22,7 +22,7 @@ import org.springframework.test.annotation.DirtiesContext;
 
 @SpringBootTest(classes = RuntimeBundleApplication.class)
 @DirtiesContext
-public class RuntimeBundleApplicationIT {
+public class RuntimeBundleApplicationTest {
 
     @Test
     public void contextLoads() throws Exception {
