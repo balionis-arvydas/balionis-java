@@ -1,5 +1,8 @@
-# example-runtime-bundle
+# balionis-activiti7-runtime
 
-Example Runtime Bundle
-This repository contains an Example Runtime Bundle used by the Activiti Cloud Examples.
+## Build
 
+```
+$ mvn clean package
+$ docker build --tag balionis-activiti7-runtime:latest .
+```
