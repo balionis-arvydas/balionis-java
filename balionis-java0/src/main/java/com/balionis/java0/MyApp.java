@@ -1,20 +1,24 @@
 package com.balionis.java0;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MyApp {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         System.out.println("main: args=" + Arrays.toString(args));
-        // TODO
+
+        MyApp app = new MyApp();
+        String res = app.solution(Arrays.asList(args));
+        System.out.println("main: res=" + res);
+
         System.out.println("main: done");
     }
 
-    public Long maxValue(List<Long> values) {
-        return values.stream().max(Comparator.naturalOrder()).orElse(Long.MIN_VALUE);
+    public String solution(List<String> values) {
+        return values.stream().collect(Collectors.joining());
     }
 }
 
