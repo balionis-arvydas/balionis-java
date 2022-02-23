@@ -17,5 +17,4 @@ This set of packages is meant to provide me with the prototype of build, test, p
 10. balionis-java4       - spike for ICE sandbox (gradle, Mockito, logback); 
 11. balionis-java5       - spike for GS sandbox; 
 12. balionis-aws1        - spike for AWS lambdas; 
-13. balionis-activiti7   - spike for activiti7 bundle; 
 99. balionis-docs        - last projects napkings...
