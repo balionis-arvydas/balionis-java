@@ -11,5 +11,5 @@ dependencies {
 }
 
 application {
-    mainClassName = "com.balionis.java0.MyApp"
+    mainClass = "com.balionis.java0.MyApp"
 }
